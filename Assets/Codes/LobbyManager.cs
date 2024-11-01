@@ -3,8 +3,8 @@ using UnityEngine;
 
 public class LobbyManager : MonoBehaviour
 {
-    public void StartGame()
+    public void StartGame(string friendName)
     {
-        SceneManager.LoadScene("GameScene"); // GameScene 이름으로 씬 로드
+        SceneManager.LoadScene("MiniGameScene"); // MiniGameScene 이름으로 씬 로드
     }
 }
