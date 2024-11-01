@@ -78,10 +78,13 @@ public class Gamemovement : MonoBehaviour
                 HandleGameOver(); // 게임 오버 처리 함수 호출
             }
         }
-
         else if (other.CompareTag("Goal")) // "Goal" 태그가 설정된 목표 지점 오브젝트
         {
             HandleGameClear(); // 게임 클리어 처리 함수 호출
+        }
+        else if (other.CompareTag("BouncePlatform")) // "BouncePlatform" 태그가 설정된 발판
+        {
+            Bounce(); // 발판에 닿았을 때 튕겨 오르는 함수 호출
         }
     }
 
@@ -93,19 +96,22 @@ public class Gamemovement : MonoBehaviour
         return Physics.Raycast(transform.position, direction, out hit, distance);
     }
 
+    private void Bounce()
+    {
+        rb.AddForce(Vector3.up * jumpForce * 3, ForceMode.Impulse); // jumpForce의 두 배로 위로 튕겨 오름
+    }
+
     private void HandleGameClear()
     {
         Debug.Log("게임 클리어!"); // 게임 클리어 메시지 출력
         gameClearPanel.SetActive(true); // 게임 클리어 패널 활성화
         StartCoroutine(HandleGameClearCoroutine()); // Coroutine 시작
-                                                   // 추가적인 게임 클리어 로직을 여기에 구현하세요.
     }
 
     private IEnumerator HandleGameClearCoroutine()
     {
         yield return new WaitForSeconds(3f); // 3초 대기
-        gameSceneManager.GameEnd(); // 게임 오버 처리 호출
-                                     // 추가적인 게임 오버 로직을 여기에 구현하세요.
+        gameSceneManager.GameEnd(); // 게임 종료 처리 호출
     }
 
     private void HandleGameOver()
@@ -118,8 +124,7 @@ public class Gamemovement : MonoBehaviour
     private IEnumerator HandleGameOverCoroutine()
     {
         yield return new WaitForSeconds(3f); // 3초 대기
-        gameSceneManager.GameEnd(); // 게임 오버 처리 호출
-                                     // 추가적인 게임 오버 로직을 여기에 구현하세요.
+        gameSceneManager.GameEnd(); // 게임 종료 처리 호출
     }
 
     // 현재 목숨 텍스트 업데이트 메서드
