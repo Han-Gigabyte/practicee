@@ -134,7 +134,6 @@ MonoBehaviour:
   player: {fileID: 9113561252419502590}
   interactionRange: 5
   FriendlyPanel: {fileID: 1015317923}
-  friendAddedPanel: {fileID: 0}
   friendListPanel: {fileID: 58765489}
   closeButton: {fileID: 372374184}
   yesButton: {fileID: 461582323}
