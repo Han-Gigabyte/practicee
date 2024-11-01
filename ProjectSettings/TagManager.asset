@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Deadline
   - Goal
+  - BouncePlatform
   layers:
   - Default
   - TransparentFX
