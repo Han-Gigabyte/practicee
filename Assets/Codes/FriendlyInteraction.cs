@@ -8,7 +8,6 @@ public class FriendlyInteraction : MonoBehaviour
     public GameObject player;                  // 플레이어 오브젝트
     public float interactionRange = 2f;        // 친구 오브젝트와의 상호작용 거리
     public GameObject FriendlyPanel;           // "친구를 얻었습니다!" UI 패널
-    public GameObject friendAddedPanel;        // "친구가 추가되었습니다!" UI 패널
     public GameObject friendListPanel;         // 친구 목록 패널 (오른쪽 화면에 표시)
     public Button closeButton;                 // 패널 닫기 버튼
     public Button yesButton;                   // 친구 추가 버튼
@@ -26,7 +25,6 @@ public class FriendlyInteraction : MonoBehaviour
     private void Start()
     {
         FriendlyPanel.SetActive(false);        // 초기에는 패널을 비활성화
-        friendAddedPanel.SetActive(false);     // "친구가 추가되었습니다" 패널도 비활성화
         friendListPanel.SetActive(true);       // 친구 목록 패널 활성화
 
         
@@ -68,7 +66,6 @@ public class FriendlyInteraction : MonoBehaviour
 
         // 친구 추가 패널 비활성화 후 "친구가 추가되었습니다!" 패널 활성화
         FriendlyPanel.SetActive(false);
-        friendAddedPanel.SetActive(true);
     }
 
     private void OnFriendButtonClicked(string friendName)
