@@ -1,15 +1,16 @@
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
 
 public class Whale : MonoBehaviour // 클래스 이름은 관례에 따라 대문자로 시작해야 합니다.
 {
     public GameObject panel_whale; // 고래 UI 패널
     public GameObject player; // 플레이어 오브젝트
     public Camera mainCamera; // 메인 카메라
-    public float interactionRange = 5f; // 상호작용 범위
+    public float interactionRange = 10f; // 상호작용 범위
     public Button yesButton; // 예 버튼
     public Button noButton; // 아니요 버튼
-    public float ballSpeed = 10f; // 공이 이동하는 속도
+    public float ballSpeed = 30f; // 공이 이동하는 속도
 
     public GameObject currentBall; // 현재 생성된 공의 참조
     private bool isBallMoving = false; // 공이 이동 중인지 여부
@@ -22,13 +23,20 @@ public class Whale : MonoBehaviour // 클래스 이름은 관례에 따라 대문자로 시작해�
 
     private void Update()
     {
+
+
         // 플레이어와 고래 사이의 거리 계산
         float distance = Vector3.Distance(player.transform.position, transform.position);
 
-        // 플레이어가 상호작용 범위 안에 들어오면 패널 표시
+        Debug.Log(distance);
+
         if (distance <= interactionRange)
         {
             panel_whale.SetActive(true); // UI 패널 활성화
+        }
+        else
+        {
+            panel_whale.SetActive(false); // 범위 밖일 때 UI 패널 비활성화
         }
 
         // U 키가 눌렸을 때 공을 앞으로 이동
