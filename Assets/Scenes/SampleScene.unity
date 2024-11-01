@@ -1833,6 +1833,7 @@ GameObject:
   - component: {fileID: 1987591984}
   - component: {fileID: 1987591983}
   - component: {fileID: 1987591987}
+  - component: {fileID: 1987591988}
   m_Layer: 0
   m_Name: Capsule
   m_TagString: Untagged
@@ -1947,6 +1948,18 @@ MonoBehaviour:
   interactionRange: 10
   capsulePanel: {fileID: 1857770297}
   closeButton: {fileID: 1989202278}
+--- !u!114 &1987591988
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1987591982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56aba1c4e1d55474cb60e6b71c8b83ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1989202276
 GameObject:
   m_ObjectHideFlags: 0
@@ -16855,6 +16868,7 @@ GameObject:
   - component: {fileID: 2952597783786752501}
   - component: {fileID: 17242234}
   - component: {fileID: 17242232}
+  - component: {fileID: 9113561251923851031}
   m_Layer: 0
   m_Name: FriendA
   m_TagString: Untagged
@@ -16862,6 +16876,18 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &9113561251923851031
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9113561251923851030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56aba1c4e1d55474cb60e6b71c8b83ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &9113561252419502590
 GameObject:
   m_ObjectHideFlags: 0
