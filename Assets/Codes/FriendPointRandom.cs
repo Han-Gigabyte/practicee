@@ -8,8 +8,10 @@ public class FriendPointRandom : MonoBehaviour
         SetRandomPosition();
     }
 
-    private void SetRandomPosition()
+    public void SetRandomPosition()
     {
+        Debug.Log("위치 랜덤 설정");
+
         float randomX;
         float randomZ;
         float fixedY = 0f;

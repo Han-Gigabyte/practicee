@@ -13,6 +13,8 @@ public class CapsuleInteraction : MonoBehaviour
     public GameObject panel3;          // 랜덤으로 활성화될 패널 3
     public GameObject panel4;          // 랜덤으로 활성화될 패널 4
 
+    private FriendPointRandom friendPointRandom;
+
     public GameObject pointPanel;      // 점수를 표시할 패널
     public Text scoreText;             // 점수 텍스트
     private int score = 0;             // 점수 값
@@ -58,6 +60,7 @@ public class CapsuleInteraction : MonoBehaviour
         {
             capsulePanel.SetActive(true); // UI 패널 활성화
             gameObject.SetActive(false);  // 캡슐 오브젝트 비활성화
+            
         }
     }
 
@@ -82,6 +85,13 @@ public class CapsuleInteraction : MonoBehaviour
             case 4:
                 panel4.SetActive(true);
                 break;
+        }
+
+        FriendPointRandom friendPointRandom = GetComponent<FriendPointRandom>();
+        if (friendPointRandom != null)
+        {
+            friendPointRandom.SetRandomPosition();
+            gameObject.SetActive(true);
         }
     }
 
