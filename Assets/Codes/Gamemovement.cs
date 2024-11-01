@@ -2,34 +2,49 @@ using UnityEngine;
 
 public class Gamemovement : MonoBehaviour
 {
-    public float moveSpeed = 30f;      // ÇÃ·¹ÀÌ¾îÀÇ ÀÌµ¿ ¼Óµµ
-    public float jumpForce = 7f;      // Á¡ÇÁ Èû
-    private Rigidbody rb;              // Rigidbody ÂüÁ¶
-    private bool isGrounded;           // Áö¸é¿¡ ´ê¾Ò´ÂÁö È®ÀÎ
+    public float moveSpeed = 3f;
+    public float jumpForce = 3f;
+    private Rigidbody rb;
+    private bool isGrounded;
 
     void Start()
     {
-        rb = GetComponent<Rigidbody>(); // Rigidbody ÄÄÆ÷³ÍÆ® °¡Á®¿À±â
+        rb = GetComponent<Rigidbody>();
+        rb.interpolation = RigidbodyInterpolation.Interpolate;
+        rb.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic; // ì¶©ëŒ ê°ì§€ ëª¨ë“œ ì„¤ì •
+    }
+
+    void FixedUpdate()
+    {
+        // ì´ë™ ë°©í–¥ì„ ì…ë ¥ìœ¼ë¡œ ë°›ê¸°
+        float horizontal = Input.GetAxis("Horizontal");
+        float vertical = Input.GetAxis("Vertical");
+
+        Vector3 move = new Vector3(horizontal, 0, vertical).normalized;
+
+        // ì˜†ë©´ ì¶©ëŒ ê°ì§€
+        if (!IsWallInDirection(move))
+        {
+            rb.MovePosition(rb.position + move * moveSpeed * Time.fixedDeltaTime);
+        }
     }
 
     void Update()
     {
-        // Á¡ÇÁ Ã¼Å©
+        // ì í”„ ì²´í¬
         isGrounded = Physics.Raycast(transform.position, Vector3.down, 1.1f);
 
-        // ÀÌµ¿ ¹æÇâÀ» ÀÔ·ÂÀ¸·Î ¹Ş±â
-        float horizontal = Input.GetAxis("Horizontal"); // A/D ¶Ç´Â ÁÂ/¿ì È­»ìÇ¥
-        float vertical = Input.GetAxis("Vertical");     // W/S ¶Ç´Â À§/¾Æ·¡ È­»ìÇ¥
-
-        Vector3 move = new Vector3(horizontal, 0, vertical).normalized; // ÀÌµ¿ º¤ÅÍ »ı¼º ¹× Á¤±ÔÈ­
-
-        // ¹°¸® ÀÌµ¿
-        rb.MovePosition(transform.position + move * moveSpeed * Time.deltaTime);
-
-        // Á¡ÇÁ ±â´É
-        if (isGrounded && Input.GetButtonDown("Jump")) // ¶¥¿¡ ÀÖÀ» ¶§ Á¡ÇÁ
+        if (isGrounded && Input.GetButtonDown("Jump"))
         {
-            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse); // Á¡ÇÁ Èû Ãß°¡
+            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
         }
+    }
+
+    // ë²½ ì¶©ëŒ ê°ì§€ ë©”ì„œë“œ
+    private bool IsWallInDirection(Vector3 direction)
+    {
+        RaycastHit hit;
+        float distance = 0.6f; // ë²½ê¹Œì§€ì˜ ìµœì†Œ ê±°ë¦¬ ì„¤ì • (í•„ìš”ì‹œ ì¡°ì • ê°€ëŠ¥)
+        return Physics.Raycast(transform.position, direction, out hit, distance);
     }
 }
